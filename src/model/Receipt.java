@@ -148,4 +148,14 @@ public class Receipt {
                 .findFirst()
                 .orElse(null);
     }
+    
+    private BigDecimal manualReceiptDiscount = BigDecimal.ZERO; // 全館折扣
+
+    public void applyManualReceiptDiscount(BigDecimal discount) {
+        this.manualReceiptDiscount = discount;
+        BigDecimal sum = this.lines.stream()
+                .map(Line::getFinalAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        this.finalAmount = sum.subtract(discount);
+    }
 }

@@ -58,7 +58,7 @@ public class FullTest {
             System.out.printf("%-10s %-25s %-8s %-8d %-10.0f %-10.0f %-10.0f%n",
                     line.getItemCode(),
                     shorten(line.getItemName(), 22),
-                    line.getCategory(),
+                    line.getCategoryName(),
                     line.getQuantity(),
                     line.getOriginalAmount().doubleValue(),
                     line.getOriginalAmount().subtract(line.getMemberDiscount()).doubleValue(),
@@ -129,7 +129,7 @@ public class FullTest {
     private static boolean checkWineDiscount(Receipt receipt, boolean isCompanyMember) {
         boolean ok = true;
         for (Line line : receipt.getLines()) {
-            if ("酒類".equals(line.getCategory()) || "09".equals(line.getCategoryCode())) {
+            if ("酒類".equals(line.getCategoryName()) || "09".equals(line.getCategoryCode())) {
                 if (isCompanyMember && line.getMemberDiscount().compareTo(BigDecimal.ZERO) == 0) {
                     System.out.println("  ⚠️ 酒類商品未套用會員折扣: " + line.getItemName());
                     ok = false;
@@ -145,7 +145,7 @@ public class FullTest {
 
     private static boolean checkNonWineDiscount(Receipt receipt) {
         for (Line line : receipt.getLines()) {
-            if (!"酒類".equals(line.getCategory()) && !"09".equals(line.getCategoryCode())) {
+            if (!"酒類".equals(line.getCategoryName()) && !"09".equals(line.getCategoryCode())) {
                 if (line.getMemberDiscount().compareTo(BigDecimal.ZERO) > 0) {
                     System.out.println("  ❌ 非酒類商品錯誤套用會員折扣: " + line.getItemName());
                     return false;

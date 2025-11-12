@@ -137,7 +137,7 @@ public class App {
             printRow(
                     line.getItemCode(),
                     TextAlignUtil.shorten(line.getItemName(), 25),
-                    line.getCategory(),
+                    line.getCategoryName(),
                     String.valueOf(line.getQuantity()),
                     String.format("%,.0f", line.getOriginalAmount().doubleValue()),
                     String.format("%,.0f", line.getOriginalAmount().subtract(line.getMemberDiscount()).doubleValue()),
@@ -173,7 +173,7 @@ public class App {
      */
     private static void printRow(String col1, String col2, String col3, String col4,
 	            String col5, String col6, String col7) {
-	System.out.printf("%s%s%s%s%s%s%s%n",
+	System.out.printf("%s\t%s%s%s%s%s%s%n",
 	TextAlignUtil.padRight(col1, 10),
 	TextAlignUtil.padRight(col2, 30),
 	TextAlignUtil.padRight(col3, 10),

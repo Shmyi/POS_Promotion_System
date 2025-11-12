@@ -44,6 +44,8 @@ public class CartItem {
     /** 促銷折扣金額 */
     private BigDecimal promotionDiscount;  
     
+    private BigDecimal manualDiscount = BigDecimal.ZERO; // 手動輸入折扣金額
+    
     /** No-args Constructor */
     public CartItem() {}
     
@@ -107,6 +109,10 @@ public class CartItem {
     
     public BigDecimal getPromotionDiscount() { return promotionDiscount; }
     public void setPromotionDiscount(BigDecimal promotionDiscount) { this.promotionDiscount = promotionDiscount; }
+    
+    public BigDecimal getManualDiscount() { return manualDiscount; }
+    public void setManualDiscount(BigDecimal manualDiscount) { this.manualDiscount = manualDiscount; }
+
     
     // Business Logic ---------------------------------
     /**
